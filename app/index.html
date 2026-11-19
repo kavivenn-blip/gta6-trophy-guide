@@ -3,23 +3,88 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>GTA VI trophy checklist</title>
+<title>Leonida Nights — GTA VI Trophy Guide &amp; Tracker</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header>
-  <h1>GTA VI trophy checklist</h1>
-  <p id="progress">0 of 55 earned</p>
+<header class="top">
+  <div class="brand">
+    <h1>LEONIDA NIGHTS</h1>
+    <p class="tagline">GTA VI trophy guide &amp; tracker — all 55 PS5 trophies, offline</p>
+  </div>
+  <div class="progress-wrap">
+    <svg class="ring" viewBox="0 0 72 72" width="72" height="72" aria-hidden="true">
+      <circle cx="36" cy="36" r="30" class="ring-bg"></circle>
+      <circle id="ringFg" cx="36" cy="36" r="30" class="ring-fg"></circle>
+    </svg>
+    <div class="progress-text">
+      <strong id="progressBig">0 / 55</strong>
+      <span id="progressPct">0% to platinum</span>
+      <span id="progressGrades">1 platinum · 2 gold · 6 silver · 46 bronze</span>
+    </div>
+  </div>
 </header>
-<div class="controls">
-  <label>Grade <select id="grade"><option value="all">All</option><option value="platinum">Platinum</option><option value="gold">Gold</option><option value="silver">Silver</option><option value="bronze">Bronze</option></select></label>
+
+<nav class="tabs" aria-label="Views">
+  <button id="tabTracker" type="button" class="tab active">Tracker</button>
+  <button id="tabRoadmap" type="button" class="tab">Roadmap to Platinum</button>
+  <span class="tab-note" id="tabNote">55 trophies · 28 hidden · 1 missable flagged</span>
+</nav>
+
+<section class="nextup" aria-label="Next up planner">
+  <h2>Next up</h2>
+  <div id="nextUpCards" class="nextup-cards"></div>
+</section>
+
+<div class="toolbar">
+  <label class="search">Search
+    <input id="search" type="search" placeholder="Search name, description or guide…" autocomplete="off">
+  </label>
+  <div class="chips" id="kindChips" role="group" aria-label="Filter by kind">
+    <button type="button" data-kind="all" class="chip active">All 55</button>
+    <button type="button" data-kind="story" class="chip">Story</button>
+    <button type="button" data-kind="missable" class="chip">Missable</button>
+    <button type="button" data-kind="collectibles" class="chip">Collectibles</button>
+    <button type="button" data-kind="activities" class="chip">Activities</button>
+    <button type="button" data-kind="hidden" class="chip">Hidden</button>
+  </div>
+  <label class="grade-pick">Grade
+    <select id="grade">
+      <option value="all">All grades</option>
+      <option value="platinum">Platinum</option>
+      <option value="gold">Gold</option>
+      <option value="silver">Silver</option>
+      <option value="bronze">Bronze</option>
+    </select>
+  </label>
+  <label class="toggle"><input id="spoiler" type="checkbox"> Spoiler-safe: hide story trophies</label>
+  <label class="toggle"><input id="earnedOnly" type="checkbox"> Earned only</label>
   <button id="export" type="button">Export progress</button>
   <label class="import">Import progress <input id="import" type="file" accept="application/json"></label>
 </div>
-<table>
-  <thead><tr><th>Earned</th><th>Trophy</th><th>Grade</th><th>How to get it</th></tr></thead>
-  <tbody id="rows"></tbody>
-</table>
+
+<main id="viewTracker" class="tracker">
+  <section class="list-col" aria-label="Trophy checklist">
+    <p class="list-meta"><span id="shownCount">55 shown</span> · tick a trophy when you earn it — progress saves in this browser</p>
+    <ul id="rows" class="rows"></ul>
+  </section>
+  <aside class="detail" id="detail" aria-label="Selected trophy guide"></aside>
+</main>
+
+<main id="viewRoadmap" class="roadmap" hidden>
+  <section class="warn">
+    <h2>Before you start — read this</h2>
+    <p><strong>No mission replay, no New Game Plus.</strong> Once a story mission is done you cannot select it again. Keep one manual save at the start of every chapter and one untouched save from just before the final mission (15 manual slots + 1 autosave).</p>
+    <p><strong>One missable:</strong> Positive Mental Attitude — Lucia's balcony meditation in Chapter 1 disappears after that chapter. Do it in Chapter 1 and keep a Chapter 1 save until it pops. Everything else stays available after the credits.</p>
+    <p><strong>100% checklist</strong> only appears after the story, under Progress &gt; Stats &gt; 100% Completion — but work you do earlier still counts.</p>
+  </section>
+  <div id="stageCards" class="stages"></div>
+</main>
+
+<footer class="sources">
+  <p><strong>Sources, checked 19 Nov 2026:</strong> names, descriptions &amp; grades — the official PS5 list via Exophase and PSNProfiles (they agree on all 55); hidden flags — 28 hidden / 27 visible; PSN counts — PSNProfiles 0/N counters; how-to details — Output Lag trophy guide. Guides are written for this entry in my own words and name their source beside each trophy. Where no walkthrough is verified yet the guide says “belum terverifikasi in-game”.</p>
+  <p>Works fully offline — no network requests, no external fonts or images. Progress is saved only in this browser (localStorage) and can be exported and imported.</p>
+</footer>
 <script type="module" src="app.js"></script>
 </body>
 </html>
